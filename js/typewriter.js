@@ -1,69 +1,66 @@
-// ===== TYPEWRITER EFFECT =====
+// ===== TYPEWRITER =====
 (function () {
-  // Subtitle typewriter
-  const subtitleEl = document.getElementById('typed-subtitle');
-  const subtitles = [
+
+  // --- Hero subtitle ---
+  const el = document.getElementById('typed-subtitle');
+  if (!el) return;
+
+  const lines = [
     'C++ Developer & Problem Solver',
     'Full Stack Web Developer',
     'Open Source Enthusiast',
     'Building the Future, One Line at a Time'
   ];
-  let subIdx = 0, charIdx = 0, deleting = false;
+  let li = 0, ci = 0, deleting = false;
 
-  function typeSubtitle() {
-    const current = subtitles[subIdx];
+  function tick() {
+    const cur = lines[li];
     if (!deleting) {
-      subtitleEl.textContent = current.slice(0, charIdx + 1);
-      charIdx++;
-      if (charIdx === current.length) {
-        deleting = true;
-        setTimeout(typeSubtitle, 2000);
-        return;
-      }
+      el.textContent = cur.slice(0, ++ci);
+      if (ci === cur.length) { deleting = true; setTimeout(tick, 2200); return; }
     } else {
-      subtitleEl.textContent = current.slice(0, charIdx - 1);
-      charIdx--;
-      if (charIdx === 0) {
-        deleting = false;
-        subIdx = (subIdx + 1) % subtitles.length;
-      }
+      el.textContent = cur.slice(0, --ci);
+      if (ci === 0) { deleting = false; li = (li + 1) % lines.length; }
     }
-    setTimeout(typeSubtitle, deleting ? 40 : 80);
+    setTimeout(tick, deleting ? 35 : 75);
   }
-  typeSubtitle();
+  tick();
 
-  // Code window typewriter
-  const codeEl = document.getElementById('code-display');
-  const codeLines = [
-    '<span style="color:#7c3aed">#include</span> <span style="color:#06b6d4">&lt;iostream&gt;</span>',
-    '<span style="color:#7c3aed">#include</span> <span style="color:#06b6d4">&lt;string&gt;</span>',
-    '',
-    '<span style="color:#94a3b8">// Portfolio Engine v1.0</span>',
-    '<span style="color:#7c3aed">class</span> <span style="color:#f1f5f9">Developer</span> {',
-    '  <span style="color:#7c3aed">public:</span>',
-    '    <span style="color:#06b6d4">string</span> name = <span style="color:#28c840">"Aman Gaur"</span>;',
-    '    <span style="color:#06b6d4">string</span> role = <span style="color:#28c840">"Full Stack Dev"</span>;',
-    '    <span style="color:#06b6d4">bool</span>   passionate = <span style="color:#febc2e">true</span>;',
-    '',
-    '    <span style="color:#06b6d4">void</span> <span style="color:#f1f5f9">build</span>() {',
-    '      <span style="color:#94a3b8">// Writing clean code...</span>',
-    '      <span style="color:#7c3aed">while</span>(passionate)',
-    '        create();',
-    '    }',
-    '};',
-    '',
-    '<span style="color:#94a3b8">// Let\'s build something great!</span>'
+  // --- Code window ---
+  const pre = document.getElementById('code-display');
+  if (!pre) return;
+
+  const code = [
+    { text: '#include <iostream>',          color: '#7c3aed' },
+    { text: '#include <string>',            color: '#7c3aed' },
+    { text: '',                             color: '' },
+    { text: '// Portfolio Engine v2.0',     color: '#475569' },
+    { text: 'class Developer {',            color: '#f1f5f9' },
+    { text: '  public:',                    color: '#7c3aed' },
+    { text: '    string name  = "Aman Gaur";',   color: '#94a3b8' },
+    { text: '    string alias = "SHINIGAMI1122";',color: '#94a3b8' },
+    { text: '    string role  = "Full Stack Dev";',color: '#94a3b8' },
+    { text: '    bool   passionate = true;', color: '#94a3b8' },
+    { text: '',                             color: '' },
+    { text: '    void build() {',           color: '#f1f5f9' },
+    { text: '      while (passionate)',     color: '#7c3aed' },
+    { text: '        create();  // ∞',     color: '#475569' },
+    { text: '    }',                        color: '#f1f5f9' },
+    { text: '};',                           color: '#f1f5f9' },
+    { text: '',                             color: '' },
+    { text: '// Let\'s build something!',  color: '#06b6d4' },
   ];
 
-  let lineIdx = 0;
+  let idx = 0;
   function typeLine() {
-    if (lineIdx < codeLines.length) {
-      const div = document.createElement('div');
-      div.innerHTML = codeLines[lineIdx];
-      codeEl.appendChild(div);
-      lineIdx++;
-      setTimeout(typeLine, 120);
-    }
+    if (idx >= code.length) return;
+    const div = document.createElement('div');
+    const c = code[idx];
+    div.style.color = c.color || '#94a3b8';
+    div.textContent = c.text;
+    pre.appendChild(div);
+    idx++;
+    setTimeout(typeLine, 110);
   }
-  setTimeout(typeLine, 800);
+  setTimeout(typeLine, 600);
 })();

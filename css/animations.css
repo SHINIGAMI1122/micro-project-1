@@ -1,144 +1,125 @@
-/* ===== ANIMATIONS ===== */
+/* ===== KEYFRAME ANIMATIONS ===== */
 
 @keyframes spin {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInLeft {
   from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInRight {
   from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 0 #7c3aed, -2px 0 #06b6d4; }
-  20% { text-shadow: -2px 0 #7c3aed, 2px 0 #06b6d4; }
-  40% { text-shadow: 2px 2px #7c3aed, -2px -2px #06b6d4; }
-  60% { text-shadow: -2px 2px #7c3aed, 2px -2px #06b6d4; }
-  80% { text-shadow: 2px -2px #7c3aed, -2px 2px #06b6d4; }
-  100% { text-shadow: 2px 0 #7c3aed, -2px 0 #06b6d4; }
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
-  50% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%   { text-shadow:  2px 0 #7c3aed, -2px 0 #06b6d4; }
+  20%  { text-shadow: -2px 0 #7c3aed,  2px 0 #06b6d4; }
+  40%  { text-shadow:  2px 2px #7c3aed, -2px -2px #06b6d4; }
+  60%  { text-shadow: -2px 2px #7c3aed,  2px -2px #06b6d4; }
+  80%  { text-shadow:  2px -2px #7c3aed, -2px 2px #06b6d4; }
+  100% { text-shadow:  2px 0 #7c3aed, -2px 0 #06b6d4; }
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50%       { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
-/* Glitch text effect */
-.glitch-text {
-  position: relative;
-  animation: glitch 3s infinite;
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(124,58,237,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(124,58,237,0.7), 0 0 60px rgba(6,182,212,0.3); }
 }
 
-/* Reveal on scroll */
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.glitch-text { animation: glitch 4s infinite; }
+
+/* Scroll reveal */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 .reveal-left {
   opacity: 0;
   transform: translateX(-40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-/* Stagger children */
-.stagger-children > *:nth-child(1) { transition-delay: 0.1s; }
-.stagger-children > *:nth-child(2) { transition-delay: 0.2s; }
-.stagger-children > *:nth-child(3) { transition-delay: 0.3s; }
-.stagger-children > *:nth-child(4) { transition-delay: 0.4s; }
-.stagger-children > *:nth-child(5) { transition-delay: 0.5s; }
-.stagger-children > *:nth-child(6) { transition-delay: 0.6s; }
+/* Stagger delays */
+.stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger > *:nth-child(6) { transition-delay: 0.55s; }
 
-/* Floating animation for hero visual */
-.hero-visual {
-  animation: float 6s ease-in-out infinite;
-}
+/* Hero visual float */
+.hero-visual { animation: float 6s ease-in-out infinite; }
 
-/* Cursor hover effect */
-body:has(.btn:hover) .cursor {
-  transform: translate(-50%, -50%) scale(2);
-}
-
-/* Loading bar shimmer */
+/* Skill bar shimmer when animating */
 .skill-fill.animate {
-  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
+  background: linear-gradient(90deg, #7c3aed 0%, #06b6d4 50%, #7c3aed 100%);
   background-size: 200% auto;
-  animation: shimmer 2s linear infinite;
+  animation: shimmer 2.5s linear infinite;
 }
 
-/* Typing cursor blink */
+/* Typing cursor */
 .typing-cursor {
   display: inline-block;
-  width: 2px;
-  height: 1.1em;
+  width: 2px; height: 1em;
   background: #7c3aed;
   margin-left: 2px;
   vertical-align: text-bottom;
-  animation: blink 0.8s infinite;
+  animation: blink 0.75s infinite;
 }
 
-/* Neon glow on hover */
-.neon-hover {
-  transition: text-shadow 0.3s;
-}
-.neon-hover:hover {
-  text-shadow: 0 0 10px #7c3aed, 0 0 20px #7c3aed, 0 0 40px #7c3aed;
-}
+/* Btn pulse */
+.btn-primary { animation: borderGlow 3s ease-in-out infinite; }
+.btn-primary:hover { animation: none; }
 
-/* Card entrance */
-.project-card {
-  animation: fadeInUp 0.6s ease both;
-}
+/* Project card entrance */
+.project-card.entering { animation: fadeInUp 0.5s ease both; }
 
-/* Pulse on CTA */
-.btn-primary {
-  animation: pulse 2.5s infinite;
-}
-.btn-primary:hover {
-  animation: none;
+/* Ripple effect on buttons */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
 }

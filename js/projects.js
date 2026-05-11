@@ -20,14 +20,25 @@
           <h3 class="project-title">${p.title}</h3>
           <p class="project-desc">${p.description}</p>
           <div class="project-links">
-            <a href="${p.github}" target="_blank" class="project-link">
+            <a href="${p.github}" target="_blank" class="project-link" onclick="event.stopPropagation()">
               <i class="fab fa-github"></i> Code
             </a>
             ${p.demo && p.demo !== '#'
-              ? `<a href="${p.demo}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>`
+              ? `<a href="${p.demo}" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                   <i class="fas fa-external-link-alt"></i> Live
+                 </a>`
               : ''}
+            <span class="project-link" style="margin-left:auto; color:var(--accent-primary); cursor:pointer">
+              <i class="fas fa-expand-alt"></i> Details
+            </span>
           </div>
         </div>`;
+
+      // Open modal on card click
+      card.addEventListener('click', () => {
+        if (typeof openProjectModal === 'function') openProjectModal(p.id);
+      });
+
       grid.appendChild(card);
     });
   }

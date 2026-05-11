@@ -7,11 +7,21 @@
   <meta name="description" content="Portfolio of Aman Gaur — C++ Developer & Full Stack Web Developer" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-logo">
+      <span class="logo-bracket">&lt;</span>SHINIGAMI<span class="logo-bracket">/&gt;</span>
+    </div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <div class="loader-text">INITIALIZING...</div>
+  </div>
 
   <!-- Particle Canvas -->
   <canvas id="particle-canvas"></canvas>
@@ -19,6 +29,16 @@
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
@@ -393,6 +413,7 @@
   <script src="data/projects.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/cpp-engine.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
